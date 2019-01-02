@@ -1,8 +1,8 @@
 package main
 
 import (
-	"rabbiting/cmd"
-	"rabbiting/helper"
+	"gorabbit/cmd"
+	"gorabbit/helper"
 )
 
 func main() {

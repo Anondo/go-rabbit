@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"rabbiting/helper"
-	"rabbiting/workers"
+	"gorabbit/helper"
+	"gorabbit/workers"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

@@ -1,8 +1,8 @@
 package tasks
 
 import (
+	"gorabbit/helper"
 	"log"
-	"rabbiting/helper"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

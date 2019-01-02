@@ -1,8 +1,8 @@
 package workers
 
 import (
+	"gorabbit/helper"
 	"log"
-	"rabbiting/helper"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -37,7 +37,7 @@ func Work(cmd *cobra.Command, args []string) {
 		nil,
 	)
 
-	inf := make(chan bool)
+	//inf := make(chan bool)
 
 	go func() {
 		for d := range msgs {
@@ -49,6 +49,6 @@ func Work(cmd *cobra.Command, args []string) {
 
 	log.Printf("%d workers are waiting for tasks, Press CTRL+C to kill\n", workers)
 
-	<-inf
+	//<-inf
 
 }
