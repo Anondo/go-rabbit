@@ -1,6 +1,10 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"gorabbit/helper"
+
+	"github.com/spf13/cobra"
+)
 
 var (
 	RootCmd = &cobra.Command{
@@ -9,9 +13,10 @@ var (
 	}
 )
 
-func ExecuteRootCommand() error {
-	err := RootCmd.Execute()
-	return err
+func Execute() {
+	if err := RootCmd.Execute(); err != nil {
+		helper.FailOnError(err, "Could not execute root command")
+	}
 }
 
 func init() {

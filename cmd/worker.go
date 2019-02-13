@@ -18,7 +18,7 @@ var (
 
 func init() {
 
-	WorkerCmd.Flags().IntP("workers", "w", 2, "The number of workers")
+	WorkerCmd.Flags().IntP("concurrency", "c", 1, "The number of concurrent workers")
 
 	helper.FailOnError(viper.BindPFlags(WorkerCmd.Flags()), "Failed to bind worker flags with viper")
 

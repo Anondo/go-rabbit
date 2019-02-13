@@ -3,6 +3,7 @@ package workers
 import (
 	"gorabbit/helper"
 	"log"
+	"sync"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -37,18 +38,21 @@ func Work(cmd *cobra.Command, args []string) {
 		nil,
 	)
 
-	//inf := make(chan bool)
+	workerNumber := viper.GetInt("concurrency")
+	wg := sync.WaitGroup{}
+	wg.Add(workerNumber)
 
-	go func() {
-		for d := range msgs {
-			log.Printf("Received message: %s\n", d.Body)
-		}
-	}()
+	for i := 0; i < workerNumber; i++ {
+		go func() {
+			for d := range msgs {
+				log.Printf("Received message: %s\n", d.Body)
+			}
+			wg.Done()
+		}()
+	}
 
-	workers := viper.GetInt("workers")
+	log.Printf("%d workers are waiting for tasks, Press CTRL+C to kill\n", workerNumber)
 
-	log.Printf("%d workers are waiting for tasks, Press CTRL+C to kill\n", workers)
-
-	//<-inf
+	wg.Wait()
 
 }
