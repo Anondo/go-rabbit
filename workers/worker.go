@@ -45,7 +45,7 @@ func Work(cmd *cobra.Command, args []string) {
 	for i := 0; i < workerNumber; i++ {
 		go func() {
 			for d := range msgs {
-				log.Printf("Received message: %s\n", d.Body)
+				log.Printf("Received message by worker-%d: %s\n", i, d.Body)
 			}
 			wg.Done()
 		}()
